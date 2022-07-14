@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "DSEG7";
+    src: url("DSEG7Modern-Regular.ttf");
+}
+
 * {
     box-sizing: border-box;
 }
@@ -24,12 +29,25 @@ body {
 
 #display {
     background-color: #49819a;
-    color: #c6dbe4;
+    font-family: 'DSEG7';
     font-size: 60px;
     text-align: end;
     width: 100%;
     margin: 0px 15px;
     height: 70px;
+    position: relative;
+}
+
+#display-bg{
+    color: #2e5160;
+    opacity: 0.4;
+}
+
+#display-fg{
+    color: #122026;
+    position: absolute;
+    top: 0px;
+    width: 100%;
 }
 
 #buttons {
