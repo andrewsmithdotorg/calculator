@@ -40,3 +40,9 @@ button {
 button:hover {
     background-color: #f9f7a9;
 }
+
+button:active {
+    background-color: #eeeb90;
+    position: relative;
+    top: 1px;
+}
