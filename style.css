@@ -55,7 +55,8 @@ body {
   top: 3px;
 }
 
-#display-fg:hover {
+#display-fg:hover,
+#display-bg:hover {
   cursor: default;
 }
 
