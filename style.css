@@ -11,7 +11,7 @@ body {
 #calculator {
     background-color: #99c9df;
     width: 400px;
-    height: 600px;
+    height: 500px;
     margin-top: 100px;
     border: 1px solid 94ecfd;
     border-radius: 10px;
@@ -19,10 +19,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+#display {
+    background-color: #49819a;
+    color: #c6dbe4;
+    font-size: 60px;
+    text-align: end;
+    width: 100%;
+    margin: 0px 15px;
+    height: 70px;
 }
 
 #buttons {
-    height: 400px;
+    height: 360px;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
