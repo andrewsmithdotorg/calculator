@@ -29,11 +29,15 @@ body {
 
 #display {
     background-color: #49819a;
+    border: 2px inset #376174;
     font-family: 'DSEG7';
-    font-size: 60px;
+    font-size: 55px;
+    display: flex;
     text-align: end;
+    justify-content: end;
     width: 100%;
     margin: 0px 15px;
+    padding: 3px;
     height: 70px;
     position: relative;
 }
@@ -41,13 +45,18 @@ body {
 #display-bg{
     color: #2e5160;
     opacity: 0.4;
+    position: absolute;
+    top: 3px;
 }
 
 #display-fg{
     color: #122026;
     position: absolute;
-    top: 0px;
-    width: 100%;
+    top: 3px;
+}
+
+#display-fg:hover {
+    cursor: default;
 }
 
 #buttons {
