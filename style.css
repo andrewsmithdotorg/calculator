@@ -1,86 +1,86 @@
 @font-face {
-    font-family: "DSEG7";
-    src: url("DSEG7Modern-Regular.ttf");
+  font-family: "DSEG7";
+  src: url("DSEG7Modern-Regular.ttf");
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #f9f7a9;
-    display: flex;
-    justify-content: center;
+  background-color: #f9f7a9;
+  display: flex;
+  justify-content: center;
 }
 
 #calculator {
-    background-color: #99c9df;
-    width: 560px;
-    height: 700px;
-    margin-top: 100px;
-    border: 1px solid 94ecfd;
-    border-radius: 10px;
-    box-shadow: 10px 10px #49819a;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    flex-wrap: wrap;
+  background-color: #99c9df;
+  width: 560px;
+  height: 700px;
+  margin-top: 100px;
+  border: 1px solid 94ecfd;
+  border-radius: 10px;
+  box-shadow: 10px 10px #49819a;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
 }
 
 #display {
-    background-color: #49819a;
-    border: 2px inset #376174;
-    font-family: 'DSEG7';
-    font-size: 80px;
-    display: flex;
-    text-align: end;
-    justify-content: end;
-    width: 100%;
-    margin: 0px 15px;
-    padding: 3px;
-    height: 100px;
-    position: relative;
+  background-color: #49819a;
+  border: 2px inset #376174;
+  font-family: "DSEG7";
+  font-size: 80px;
+  display: flex;
+  text-align: end;
+  justify-content: end;
+  width: 100%;
+  margin: 0px 15px;
+  padding: 3px;
+  height: 100px;
+  position: relative;
 }
 
-#display-bg{
-    color: #2e5160;
-    opacity: 0.4;
-    position: absolute;
-    top: 3px;
+#display-bg {
+  color: #2e5160;
+  opacity: 0.4;
+  position: absolute;
+  top: 3px;
 }
 
-#display-fg{
-    color: #122026;
-    position: absolute;
-    top: 3px;
+#display-fg {
+  color: #122026;
+  position: absolute;
+  top: 3px;
 }
 
 #display-fg:hover {
-    cursor: default;
+  cursor: default;
 }
 
 #buttons {
-    height: 500px;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    margin: 5px;
+  height: 500px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 5px;
 }
 
 button {
-    background-color: #c6dbe4;
-    width: 125px;
-    height: 85px;
-    border-radius: 10px;
-    border: none;
+  background-color: #c6dbe4;
+  width: 125px;
+  height: 85px;
+  border-radius: 10px;
+  border: none;
 }
 
 button:hover {
-    background-color: #f9f7a9;
+  background-color: #f9f7a9;
 }
 
 button:active {
-    background-color: #eeeb90;
-    position: relative;
-    top: 1px;
+  background-color: #eeeb90;
+  position: relative;
+  top: 1px;
 }
