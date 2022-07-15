@@ -21,7 +21,8 @@ const operate = (operation, num1, num2) => {
 let displayValue = 0;
 let prevVal = 0;
 let newVal = 0;
-let nextOperation = add; //dummy instantiation for implementation of equals key logic
+let prevKey = "";
+let nextOperation;
 
 const zeroKey = document.querySelector("#zero-key");
 const oneKey = document.querySelector("#one-key");
@@ -63,23 +64,63 @@ const keys = [
 const addNumButtonFunctionality = () => {
   for (let i = 0; i <= 9; i++) {
     keys[i].addEventListener("click", () => {
-      displayValue = i;
-      prevVal = newVal;
-      newVal = i;
-      displayOutput.textContent = displayValue;
+      //   displayValue = i;
+      //   prevVal = newVal;
+      //   newVal = i;
+      //   displayOutput.textContent = displayValue;
+      runNumKeyLogic(prevKey, i);
+      prevKey = "number";
     });
   }
 };
 
 addNumButtonFunctionality();
 
+const addAddButtonFunctionality = () => {
+  addEventListener("click", () => {
+    addKey.addEventListener("click", () => {
+      nextOperation = add;
+      prevKey = "operation";
+    });
+  });
+};
+
+addAddButtonFunctionality();
+
 const addEqualsButtonFunctionality = () => {
   addEventListener("click", () => {
     equalsKey.addEventListener("click", () => {
       displayValue = operate(nextOperation, prevVal, newVal);
       displayOutput.textContent = displayValue;
+      prevKey = "equals";
     });
   });
 };
 
 addEqualsButtonFunctionality();
+
+const runNumKeyLogic = (prevKey, newKey) => {
+  if (prevKey == "") {
+    displayValue = newKey;
+    prevVal = newVal;
+    newVal = newKey;
+    displayOutput.textContent = displayValue;
+  }
+  if (prevKey == "number") {
+    displayValue = parseInt(displayValue.toString() + newKey.toString());
+    newVal = displayValue;
+    displayOutput.textContent = displayValue;
+  }
+  if (prevKey == "operation") {
+    displayValue = newKey;
+    displayOutput.textContent = displayValue;
+    prevVal = newVal;
+    newVal = newKey;
+  }
+  if (prevKey == "equals") {
+    displayValue = newKey;
+    displayOutput.textContent = displayValue;
+    prevVal = newVal;
+    newVal = newKey;
+  }
+};
