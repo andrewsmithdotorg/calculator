@@ -19,6 +19,9 @@ const operate = (operation, num1, num2) => {
 };
 
 let displayValue = 0;
+let prevVal = 0;
+let newVal = 0;
+let nextOperation = add; //dummy instantiation for implementation of equals key logic
 
 const zeroKey = document.querySelector("#zero-key");
 const oneKey = document.querySelector("#one-key");
@@ -61,9 +64,22 @@ const addNumButtonFunctionality = () => {
   for (let i = 0; i <= 9; i++) {
     keys[i].addEventListener("click", () => {
       displayValue = i;
+      prevVal = newVal;
+      newVal = i;
       displayOutput.textContent = displayValue;
     });
   }
 };
 
 addNumButtonFunctionality();
+
+const addEqualsButtonFunctionality = () => {
+  addEventListener("click", () => {
+    equalsKey.addEventListener("click", () => {
+      displayValue = operate(nextOperation, prevVal, newVal);
+      displayOutput.textContent = displayValue;
+    });
+  });
+};
+
+addEqualsButtonFunctionality();
