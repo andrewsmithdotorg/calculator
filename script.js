@@ -88,12 +88,11 @@ const addAddButtonFunctionality = () => {
 addAddButtonFunctionality();
 
 const addEqualsButtonFunctionality = () => {
-  addEventListener("click", () => {
-    equalsKey.addEventListener("click", () => {
-      displayValue = operate(nextOperation, prevVal, newVal);
-      displayOutput.textContent = displayValue;
-      prevKey = "equals";
-    });
+  equalsKey.addEventListener("click", () => {
+    displayValue = operate(nextOperation, prevVal, newVal);
+    displayOutput.textContent = displayValue;
+    newVal = displayValue;
+    prevKey = "equals";
   });
 };
 
