@@ -101,10 +101,7 @@ addEqualsButtonFunctionality();
 
 const runNumKeyLogic = (prevKey, newKey) => {
   if (prevKey == "") {
-    displayValue = newKey;
-    prevVal = newVal;
-    newVal = newKey;
-    displayOutput.textContent = displayValue;
+    cycleVals(newKey);
   }
   if (prevKey == "number") {
     displayValue = parseInt(displayValue.toString() + newKey.toString());
@@ -112,15 +109,16 @@ const runNumKeyLogic = (prevKey, newKey) => {
     displayOutput.textContent = displayValue;
   }
   if (prevKey == "operation") {
-    displayValue = newKey;
-    displayOutput.textContent = displayValue;
-    prevVal = newVal;
-    newVal = newKey;
+    cycleVals(newKey);
   }
   if (prevKey == "equals") {
-    displayValue = newKey;
-    displayOutput.textContent = displayValue;
-    prevVal = newVal;
-    newVal = newKey;
+    cycleVals(newKey);
   }
+};
+
+const cycleVals = (newNum) => {
+  prevVal = newVal;
+  newVal = newNum;
+  displayValue = newNum;
+  displayOutput.textContent = displayValue;
 };
