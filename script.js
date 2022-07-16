@@ -108,6 +108,7 @@ const createClearKeyListener = () => {
     prevVal = undefined;
     newVal = undefined;
     prevKey = "";
+    nextOperation = undefined;
     displayOutput.textContent = displayValue;
   });
 };
