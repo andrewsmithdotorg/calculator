@@ -42,6 +42,7 @@ const multiplyKey = document.querySelector("#multiply-key");
 const divideKey = document.querySelector("#divide-key");
 const decimalPointKey = document.querySelector("#decimal-point-key");
 const equalsKey = document.querySelector("#equals-key");
+const clearKey = document.querySelector("#clear-key");
 const displayOutput = document.querySelector("#display-fg");
 
 const keys = [
@@ -61,6 +62,7 @@ const keys = [
   divideKey,
   decimalPointKey,
   equalsKey,
+  clearKey,
 ];
 
 const createNumKeyListeners = () => {
@@ -100,9 +102,20 @@ const createEqualsKeyListener = () => {
   });
 };
 
+const createClearKeyListener = () => {
+  clearKey.addEventListener("click", () => {
+    displayValue = 0;
+    prevVal = undefined;
+    newVal = undefined;
+    prevKey = "";
+    displayOutput.textContent = displayValue;
+  });
+};
+
 createNumKeyListeners();
 createOperationsKeyListeners();
 createEqualsKeyListener();
+createClearKeyListener();
 
 const runNumKeyLogic = (prevKey, newKey) => {
   if (prevKey == "number") {
