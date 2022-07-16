@@ -61,7 +61,7 @@ const keys = [
   equalsKey,
 ];
 
-const addNumButtonFunctionality = () => {
+const createNumKeyListeners = () => {
   for (let i = 0; i <= 9; i++) {
     keys[i].addEventListener("click", () => {
       runNumKeyLogic(prevKey, i);
@@ -70,22 +70,18 @@ const addNumButtonFunctionality = () => {
   }
 };
 
-addNumButtonFunctionality();
-
-const addAddButtonFunctionality = () => {
-    addKey.addEventListener("click", () => {
-      nextOperation = add;
-      if((prevKey != "equals") && (prevVal != undefined)) {
-        cycleVals(operate(nextOperation, prevVal, newVal));
-      }
-      prevKey = "operation";
-      debug();
+const createAddKeyListener = () => {
+  addKey.addEventListener("click", () => {
+    nextOperation = add;
+    if (prevKey != "equals" && prevVal != undefined) {
+      cycleVals(operate(nextOperation, prevVal, newVal));
+    }
+    prevKey = "operation";
+    debug();
   });
 };
 
-addAddButtonFunctionality();
-
-const addEqualsButtonFunctionality = () => {
+const createEqualsKeyListener = () => {
   equalsKey.addEventListener("click", () => {
     if (prevKey != "equals") {
       cycleVals(operate(nextOperation, prevVal, newVal));
@@ -100,21 +96,16 @@ const addEqualsButtonFunctionality = () => {
   });
 };
 
-addEqualsButtonFunctionality();
+createNumKeyListeners();
+createAddKeyListener();
+createEqualsKeyListener();
 
 const runNumKeyLogic = (prevKey, newKey) => {
-  if (prevKey == "") {
-    cycleVals(newKey);
-  }
   if (prevKey == "number") {
     displayValue = parseInt(displayValue.toString() + newKey.toString());
     newVal = displayValue;
     displayOutput.textContent = displayValue;
-  }
-  if (prevKey == "operation") {
-    cycleVals(newKey);
-  }
-  if (prevKey == "equals") {
+  } else {
     cycleVals(newKey);
   }
 };
@@ -127,8 +118,8 @@ const cycleVals = (newNum) => {
 };
 
 const debug = () => {
-    console.log(prevVal);
-    console.log(newVal);
-    console.log(displayValue);
-    console.log(prevKey)
-}
+  console.log(prevVal);
+  console.log(newVal);
+  console.log(displayValue);
+  console.log(prevKey);
+};
