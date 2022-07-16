@@ -14,6 +14,8 @@ const divide = (num1, num2) => {
   return num1 / num2;
 };
 
+const operations = [add, subtract, multiply, divide];
+
 const operate = (operation, num1, num2) => {
   return operation(num1, num2);
 };
@@ -70,15 +72,17 @@ const createNumKeyListeners = () => {
   }
 };
 
-const createAddKeyListener = () => {
-  addKey.addEventListener("click", () => {
-    nextOperation = add;
-    if (prevKey != "equals" && prevVal != undefined) {
-      cycleVals(operate(nextOperation, prevVal, newVal));
-    }
-    prevKey = "operation";
-    debug();
-  });
+const createOperationsKeyListeners = () => {
+  for (let i = 10; i < 14; i++) {
+    keys[i].addEventListener("click", () => {
+      if (prevKey == "number" && prevVal != undefined) {
+        cycleVals(operate(nextOperation, prevVal, newVal));
+      }
+      nextOperation = operations[i - 10];
+      prevKey = "operation";
+      debug();
+    });
+  }
 };
 
 const createEqualsKeyListener = () => {
@@ -97,7 +101,7 @@ const createEqualsKeyListener = () => {
 };
 
 createNumKeyListeners();
-createAddKeyListener();
+createOperationsKeyListeners();
 createEqualsKeyListener();
 
 const runNumKeyLogic = (prevKey, newKey) => {
