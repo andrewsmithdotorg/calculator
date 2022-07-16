@@ -19,8 +19,8 @@ const operate = (operation, num1, num2) => {
 };
 
 let displayValue = 0;
-let prevVal = 0;
-let newVal = 0;
+let prevVal = undefined;
+let newVal = undefined;
 let prevKey = "";
 let nextOperation;
 
@@ -73,11 +73,13 @@ const addNumButtonFunctionality = () => {
 addNumButtonFunctionality();
 
 const addAddButtonFunctionality = () => {
-  addEventListener("click", () => {
     addKey.addEventListener("click", () => {
       nextOperation = add;
+      if((prevKey != "equals") && (prevVal != undefined)) {
+        cycleVals(operate(nextOperation, prevVal, newVal));
+      }
       prevKey = "operation";
-    });
+      debug();
   });
 };
 
@@ -92,7 +94,9 @@ const addEqualsButtonFunctionality = () => {
       displayValue = operate(nextOperation, prevVal, newVal);
       displayOutput.textContent = displayValue;
       newVal = displayValue;
+      prevKey = "equals";
     }
+    debug();
   });
 };
 
@@ -121,3 +125,10 @@ const cycleVals = (newNum) => {
   displayValue = newNum;
   displayOutput.textContent = displayValue;
 };
+
+const debug = () => {
+    console.log(prevVal);
+    console.log(newVal);
+    console.log(displayValue);
+    console.log(prevKey)
+}
