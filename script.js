@@ -105,6 +105,9 @@ const runNumKeyLogic = (prevKey, newKey) => {
     displayValue = parseInt(displayValue.toString() + newKey.toString());
     newVal = displayValue;
     displayOutput.textContent = displayValue;
+  } else if (prevKey == "equals") {
+    cycleVals(newKey);
+    prevVal = 0;
   } else {
     cycleVals(newKey);
   }
