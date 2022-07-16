@@ -64,10 +64,6 @@ const keys = [
 const addNumButtonFunctionality = () => {
   for (let i = 0; i <= 9; i++) {
     keys[i].addEventListener("click", () => {
-      //   displayValue = i;
-      //   prevVal = newVal;
-      //   newVal = i;
-      //   displayOutput.textContent = displayValue;
       runNumKeyLogic(prevKey, i);
       prevKey = "number";
     });
@@ -89,10 +85,14 @@ addAddButtonFunctionality();
 
 const addEqualsButtonFunctionality = () => {
   equalsKey.addEventListener("click", () => {
-    displayValue = operate(nextOperation, prevVal, newVal);
-    displayOutput.textContent = displayValue;
-    newVal = displayValue;
-    prevKey = "equals";
+    if (prevKey != "equals") {
+      cycleVals(operate(nextOperation, prevVal, newVal));
+      prevKey = "equals";
+    } else {
+      displayValue = operate(nextOperation, prevVal, newVal);
+      displayOutput.textContent = displayValue;
+      newVal = displayValue;
+    }
   });
 };
 
