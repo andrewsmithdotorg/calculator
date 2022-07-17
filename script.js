@@ -87,6 +87,13 @@ const createOperationsKeyListeners = () => {
   }
 };
 
+const createDecimalKeyListener = () => {
+  decimalPointKey.addEventListener("click", () => {
+    prevKey = "decimal";
+    debug();
+  });
+};
+
 const createEqualsKeyListener = () => {
   equalsKey.addEventListener("click", () => {
     if (prevKey != "equals") {
@@ -118,12 +125,19 @@ const createClearKeyListener = () => {
 
 createNumKeyListeners();
 createOperationsKeyListeners();
+createDecimalKeyListener();
 createEqualsKeyListener();
 createClearKeyListener();
 
 const runNumKeyLogic = (prevKey, newKey) => {
   if (prevKey == "number") {
     displayValue = parseInt(displayValue.toString() + newKey.toString());
+    newVal = displayValue;
+    displayOutput.textContent = displayValue;
+  } else if (prevKey == "decimal") {
+    displayValue = parseFloat(
+      displayValue.toString() + "." + newKey.toString()
+    );
     newVal = displayValue;
     displayOutput.textContent = displayValue;
   } else if (prevKey == "equals") {
