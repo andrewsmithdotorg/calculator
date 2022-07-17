@@ -114,11 +114,7 @@ const createEqualsKeyListener = () => {
 
 const createClearKeyListener = () => {
   clearKey.addEventListener("click", () => {
-    displayValue = 0;
-    prevVal = undefined;
-    newVal = undefined;
-    prevKey = "";
-    nextOperation = undefined;
+    wipeVariables();
     displayOutput.textContent = displayValue;
   });
 };
@@ -134,6 +130,7 @@ const runNumKeyLogic = (prevKey, newKey) => {
     displayValue = parseInt(displayValue.toString() + newKey.toString());
     newVal = displayValue;
     displayOutput.textContent = displayValue;
+    truncateDisplayValue();
   } else if (prevKey == "decimal") {
     displayValue = parseFloat(
       displayValue.toString() + "." + newKey.toString()
@@ -154,6 +151,21 @@ const cycleVals = (newNum) => {
   displayValue = newNum;
   displayOutput.textContent = displayValue;
 };
+
+const truncateDisplayValue = () => {
+  if (displayValue.toString().length == 9) {
+    wipeVariables();
+    displayOutput.textContent = "oh!no";
+  }
+};
+
+const wipeVariables = () => {
+    displayValue = 0;
+    prevVal = undefined;
+    newVal = undefined;
+    prevKey = "";
+    nextOperation = undefined;
+}
 
 const debug = () => {
   console.log("prevVal is " + prevVal);
