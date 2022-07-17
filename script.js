@@ -70,6 +70,7 @@ const createNumKeyListeners = () => {
     keys[i].addEventListener("click", () => {
       runNumKeyLogic(prevKey, i);
       prevKey = "number";
+      debug();
     });
   }
 };
@@ -93,6 +94,7 @@ const createOperationsKeyListeners = () => {
 const createDecimalKeyListener = () => {
   decimalPointKey.addEventListener("click", () => {
     prevKey = "decimal";
+    displayValue += ".";
     debug();
   });
 };
@@ -135,24 +137,34 @@ createEqualsKeyListener();
 createClearKeyListener();
 
 const runNumKeyLogic = (prevKey, newKey) => {
-  if (prevKey == "number") {
-    displayValue = parseInt(displayValue.toString() + newKey.toString());
+  if (prevKey == "number" || prevKey == "decimal") {
+    buildNumber(prevKey, newKey);
     newVal = displayValue;
     displayOutput.textContent = displayValue;
     truncateDisplayValue();
-  } else if (prevKey == "decimal") {
-    displayValue = parseFloat(
-      displayValue.toString() + "." + newKey.toString()
-    );
-    newVal = displayValue;
-    displayOutput.textContent = displayValue;
   } else if (prevKey == "equals") {
     cycleVals(newKey);
     prevVal = 0;
   } else {
     cycleVals(newKey);
   }
-  //   removeOperatorHighlight();
+};
+
+const buildNumber = (prevKey, newKey) => {
+  if (newKey == 0 && displayValue.toString().includes(".")) {
+    // this case solves the problem of not being able to add a zero to the end of a float.
+    // if it finds a decimal point in displayValue, it determines how many digits exist
+    // after the decimal and forces the float to display one extra digit (a zero).
+    let floatLength =
+      displayValue.toString().length - displayValue.toString().indexOf(".");
+    displayValue = parseFloat(displayValue).toFixed(floatLength);
+    return;
+  }
+  if (prevKey == "number") {
+    displayValue = parseFloat(displayValue.toString() + newKey.toString());
+  } else if (prevKey == "decimal") {
+    displayValue = parseFloat(displayValue.toString() + newKey.toString());
+  }
 };
 
 const cycleVals = (newNum) => {
