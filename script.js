@@ -93,7 +93,10 @@ const createEqualsKeyListener = () => {
       cycleVals(operate(nextOperation, prevVal, newVal));
       prevKey = "equals";
     } else {
-      displayValue = operate(nextOperation, prevVal, newVal);
+      // this case allows the user to 'chain' an operation by pressing equals
+      // repeatedly without 'cycling' away prevVal.  Has to change the order of
+      // the operands to work as expected.
+      displayValue = operate(nextOperation, newVal, prevVal);
       displayOutput.textContent = displayValue;
       newVal = displayValue;
       prevKey = "equals";
@@ -139,8 +142,9 @@ const cycleVals = (newNum) => {
 };
 
 const debug = () => {
-  console.log(prevVal);
-  console.log(newVal);
-  console.log(displayValue);
-  console.log(prevKey);
+  console.log("prevVal is " + prevVal);
+  console.log("newVal is " + newVal);
+  console.log("displayValue is " + displayValue);
+  console.log("prevKey is " + prevKey);
+  console.log("nextOp is " + nextOperation);
 };
