@@ -97,7 +97,9 @@ const createDecimalKeyListener = () => {
 
 const createEqualsKeyListener = () => {
   equalsKey.addEventListener("click", () => {
-    if (prevKey != "equals") {
+    if (prevKey == "operation") {
+      return;
+    } else if (prevKey != "equals") {
       cycleVals(operate(nextOperation, prevVal, newVal));
       prevKey = "equals";
       truncateDisplayValue();
