@@ -81,6 +81,8 @@ const createOperationsKeyListeners = () => {
         cycleVals(operate(nextOperation, prevVal, newVal));
       }
       nextOperation = operations[i - 10];
+      removeOperatorHighlight();
+      keys[i].style.backgroundColor = "#f9f7a9";
       prevKey = "operation";
       truncateDisplayValue();
       debug();
@@ -113,6 +115,7 @@ const createEqualsKeyListener = () => {
       prevKey = "equals";
       truncateDisplayValue();
     }
+    removeOperatorHighlight();
     debug();
   });
 };
@@ -120,6 +123,7 @@ const createEqualsKeyListener = () => {
 const createClearKeyListener = () => {
   clearKey.addEventListener("click", () => {
     wipeVariables();
+    removeOperatorHighlight();
     displayOutput.textContent = displayValue;
   });
 };
@@ -148,6 +152,7 @@ const runNumKeyLogic = (prevKey, newKey) => {
   } else {
     cycleVals(newKey);
   }
+  //   removeOperatorHighlight();
 };
 
 const cycleVals = (newNum) => {
@@ -170,6 +175,13 @@ const wipeVariables = () => {
   newVal = undefined;
   prevKey = "";
   nextOperation = undefined;
+};
+
+const removeOperatorHighlight = () => {
+  addKey.style.backgroundColor = null;
+  subtractKey.style.backgroundColor = null;
+  multiplyKey.style.backgroundColor = null;
+  divideKey.style.backgroundColor = null;
 };
 
 const debug = () => {
