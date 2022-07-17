@@ -82,6 +82,7 @@ const createOperationsKeyListeners = () => {
       }
       nextOperation = operations[i - 10];
       prevKey = "operation";
+      truncateDisplayValue();
       debug();
     });
   }
@@ -99,6 +100,7 @@ const createEqualsKeyListener = () => {
     if (prevKey != "equals") {
       cycleVals(operate(nextOperation, prevVal, newVal));
       prevKey = "equals";
+      truncateDisplayValue();
     } else {
       // this case allows the user to 'chain' an operation by pressing equals
       // repeatedly without 'cycling' away prevVal.  Has to change the order of
@@ -107,6 +109,7 @@ const createEqualsKeyListener = () => {
       displayOutput.textContent = displayValue;
       newVal = displayValue;
       prevKey = "equals";
+      truncateDisplayValue();
     }
     debug();
   });
@@ -153,19 +156,19 @@ const cycleVals = (newNum) => {
 };
 
 const truncateDisplayValue = () => {
-  if (displayValue.toString().length == 9) {
+  if (displayValue.toString().length > 8) {
     wipeVariables();
     displayOutput.textContent = "oh!no";
   }
 };
 
 const wipeVariables = () => {
-    displayValue = 0;
-    prevVal = undefined;
-    newVal = undefined;
-    prevKey = "";
-    nextOperation = undefined;
-}
+  displayValue = 0;
+  prevVal = undefined;
+  newVal = undefined;
+  prevKey = "";
+  nextOperation = undefined;
+};
 
 const debug = () => {
   console.log("prevVal is " + prevVal);
